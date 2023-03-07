@@ -1,7 +1,11 @@
 package net.dachi.dream.world.dimension;
 
+import net.dachi.dream.Dream;
 import net.minecraft.client.renderer.DimensionSpecialEffects;
+import net.minecraft.core.Registry;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -11,6 +15,8 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
 @Mod.EventBusSubscriber
 public class DreamDimension {
+    public static final ResourceKey<Level> DREAM = ResourceKey.create(Registry.DIMENSION_REGISTRY,
+            new ResourceLocation(Dream.MOD_ID, "dream"));
     @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
     public static class Fixers {
         @SubscribeEvent
@@ -29,7 +35,7 @@ public class DreamDimension {
                 }
             };
             //then we have an enqueue work putting the effects.
-            event.enqueueWork(() -> DimensionSpecialEffects.EFFECTS.put(new ResourceLocation("dream:dream"), specialEffects));
+            event.enqueueWork(() -> DimensionSpecialEffects.EFFECTS.put(DREAM.location(), specialEffects));
         }
     }
 }

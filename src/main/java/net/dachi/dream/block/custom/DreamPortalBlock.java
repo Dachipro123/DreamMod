@@ -1,5 +1,6 @@
 package net.dachi.dream.block.custom;
 
+import net.dachi.dream.world.dimension.DreamDimension;
 import net.dachi.dream.world.dimension.portal.DreamPortalShape;
 import net.dachi.dream.world.dimension.portal.DreamTeleporter;
 import net.minecraft.core.BlockPos;
@@ -91,9 +92,9 @@ public class DreamPortalBlock extends NetherPortalBlock {
         if (!entity.isPassenger() && !entity.isVehicle() && entity.canChangeDimensions() && !entity.level.isClientSide() && true) {
             if (entity.isOnPortalCooldown()) {
                 entity.setPortalCooldown();
-            } else if (entity.level.dimension() != ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation("dream:dream"))) {
+            } else if (entity.level.dimension() != DreamDimension.DREAM) {
                 entity.setPortalCooldown();
-                teleportToDimension(entity, pos, ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation("dream:dream")));
+                teleportToDimension(entity, pos, DreamDimension.DREAM);
             } else {
                 entity.setPortalCooldown();
                 teleportToDimension(entity, pos, Level.OVERWORLD);
@@ -104,4 +105,6 @@ public class DreamPortalBlock extends NetherPortalBlock {
     private void teleportToDimension(Entity entity, BlockPos pos, ResourceKey<Level> destinationType) {
         entity.changeDimension(entity.getServer().getLevel(destinationType), new DreamTeleporter(entity.getServer().getLevel(destinationType), pos));
     }
+
+    //ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation("dream:dream"))
 }
