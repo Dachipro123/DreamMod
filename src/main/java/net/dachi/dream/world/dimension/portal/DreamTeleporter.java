@@ -1,6 +1,7 @@
 package net.dachi.dream.world.dimension.portal;
 
 import com.google.common.collect.ImmutableSet;
+import com.mojang.logging.LogUtils;
 import net.dachi.dream.block.ModBlocks;
 import net.minecraft.BlockUtil;
 import net.minecraft.core.BlockPos;
@@ -30,6 +31,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegisterEvent;
+import org.slf4j.Logger;
 
 import java.util.Comparator;
 import java.util.Optional;
@@ -39,6 +41,7 @@ import java.util.function.Function;
 public class DreamTeleporter implements ITeleporter {
     public static final TicketType<BlockPos> DREAM_PORTAL = TicketType.create("dream_portal", Vec3i::compareTo, 300);
     public static Holder<PoiType> poi = null;
+    private static final Logger LOGGER = LogUtils.getLogger();
 
     @SubscribeEvent
     public static void registerPointOfInterest(RegisterEvent event) {
@@ -194,6 +197,7 @@ public class DreamTeleporter implements ITeleporter {
     public Entity placeEntity(Entity entity, ServerLevel ServerLevel, ServerLevel server, float yaw, Function<Boolean, Entity> repositionEntity) {
         PortalInfo portalinfo = getPortalInfo(entity, server);
         if (entity instanceof ServerPlayer player) {
+            LOGGER.debug("pos x is" +portalinfo.pos.x);
             player.setLevel(server);
             server.addDuringPortalTeleport(player);
             entity.setYRot(portalinfo.yRot % 360.0F);
