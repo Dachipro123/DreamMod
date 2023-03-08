@@ -1,6 +1,7 @@
 package net.dachi.dream.entity;
 
 import net.dachi.dream.Dream;
+import net.dachi.dream.entity.custom.FlyingHorseEntity;
 import net.dachi.dream.entity.custom.NightmareBlazeEntity;
 import net.dachi.dream.entity.custom.NightmareBossEntity;
 import net.minecraft.resources.ResourceLocation;
@@ -25,8 +26,13 @@ public class ModEntityTypes {
     public static final RegistryObject<EntityType<NightmareBossEntity>> NIGHTMARE_BOSS =
             ENTITY_TYPES.register("nightmare_boss",
                     () -> EntityType.Builder.of(NightmareBossEntity::new,
-                                    MobCategory.MONSTER).sized(0.5f, 2f)
+                                    MobCategory.MONSTER).sized(0.5f, 1.5f)
                             .build(new ResourceLocation(Dream.MOD_ID, "nightmare_boss").toString()));
+    public static final RegistryObject<EntityType<FlyingHorseEntity>> FLYING_HORSE =
+            ENTITY_TYPES.register("flying_horse",
+                    () -> EntityType.Builder.of(FlyingHorseEntity::new,
+                                    MobCategory.CREATURE).sized(1.5f, 1.6f)
+                            .build(new ResourceLocation(Dream.MOD_ID, "flying_horse").toString()));
 
 
     public static void register(IEventBus eventBus) {

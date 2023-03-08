@@ -202,18 +202,20 @@ public class DreamTeleporter implements ITeleporter {
             server.addDuringPortalTeleport(player);
             entity.setYRot(portalinfo.yRot % 360.0F);
             entity.setXRot(portalinfo.xRot % 360.0F);
+            entity.moveTo(entityEnterPos.getX(),entityEnterPos.getY(),entityEnterPos.getZ());
             entity.moveTo(portalinfo.pos.x, portalinfo.pos.y, portalinfo.pos.z);
             return entity;
-        } else {
-            Entity entityNew = entity.getType().create(server);
-            if (entityNew != null) {
-                entityNew.restoreFrom(entity);
-                entityNew.moveTo(portalinfo.pos.x, portalinfo.pos.y, portalinfo.pos.z, portalinfo.yRot, entityNew.getXRot());
-                entityNew.setDeltaMovement(portalinfo.speed);
-                server.addDuringTeleport(entityNew);
-            }
-            return entityNew;
+        //} else {
+        //    Entity entityNew = entity.getType().create(server);
+        //    if (entityNew != null) {
+        //        entityNew.restoreFrom(entity);
+        //        entityNew.moveTo(portalinfo.pos.x, portalinfo.pos.y, portalinfo.pos.z, portalinfo.yRot, entityNew.getXRot());
+        //        entityNew.setDeltaMovement(portalinfo.speed);
+        //        server.addDuringTeleport(entityNew);
+        //    }
+        //    return entityNew;
         }
+        return entity;
     }
 
     private PortalInfo getPortalInfo(Entity entity, ServerLevel server) {

@@ -4,6 +4,7 @@ import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.dachi.dream.Dream;
 import net.dachi.dream.block.ModBlocks;
 import net.dachi.dream.entity.ModEntityTypes;
+import net.dachi.dream.entity.custom.FlyingHorseEntity;
 import net.dachi.dream.entity.custom.NightmareBlazeEntity;
 import net.dachi.dream.entity.custom.NightmareBossEntity;
 import net.dachi.dream.item.ModItems;
@@ -129,6 +130,7 @@ public class ModEvents {
         @SubscribeEvent
         public static void entityAttributeEvent(EntityAttributeCreationEvent event) {
             event.put(ModEntityTypes.NIGHTMARE_BLAZE.get(), NightmareBlazeEntity.setAttributes());
+            event.put(ModEntityTypes.FLYING_HORSE.get(), FlyingHorseEntity.setAttributes());
             event.put(ModEntityTypes.NIGHTMARE_BOSS.get(), NightmareBossEntity.setAttributes());
         }
     }

@@ -4,8 +4,10 @@ import com.mojang.logging.LogUtils;
 import net.dachi.dream.block.ModBlocks;
 import net.dachi.dream.block.entity.ModBlockEntities;
 import net.dachi.dream.entity.ModEntityTypes;
+import net.dachi.dream.entity.client.FlyingHorseRenderer;
 import net.dachi.dream.entity.client.NightmareBlazeRenderer;
 import net.dachi.dream.entity.client.NightmareBossRenderer;
+import net.dachi.dream.entity.custom.FlyingHorseEntity;
 import net.dachi.dream.fluid.ModFluidTypes;
 import net.dachi.dream.fluid.ModFluids;
 import net.dachi.dream.item.ModItems;
@@ -97,6 +99,7 @@ public class Dream
             ItemBlockRenderTypes.setRenderLayer(ModFluids.FLOWING_DREAMY_WATER.get(), RenderType.translucent());
             EntityRenderers.register(ModEntityTypes.NIGHTMARE_BOSS.get(), NightmareBossRenderer::new);
             EntityRenderers.register(ModEntityTypes.NIGHTMARE_BLAZE.get(), NightmareBlazeRenderer::new);
+            EntityRenderers.register(ModEntityTypes.FLYING_HORSE.get(), FlyingHorseRenderer::new);
 
             MenuScreens.register(ModMenuTypes.DREAM_FORGER_MENU.get(), DreamForgerScreen::new);
 
