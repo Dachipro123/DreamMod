@@ -7,6 +7,7 @@ import net.dachi.dream.entity.ModEntityTypes;
 import net.dachi.dream.entity.custom.FlyingHorseEntity;
 import net.dachi.dream.entity.custom.NightmareBlazeEntity;
 import net.dachi.dream.entity.custom.NightmareBossEntity;
+import net.dachi.dream.entity.custom.StalkerEntity;
 import net.dachi.dream.item.ModItems;
 import net.dachi.dream.networking.ModMessages;
 import net.dachi.dream.networking.packet.ThirstDataSyncS2CPacket;
@@ -130,6 +131,7 @@ public class ModEvents {
         @SubscribeEvent
         public static void entityAttributeEvent(EntityAttributeCreationEvent event) {
             event.put(ModEntityTypes.NIGHTMARE_BLAZE.get(), NightmareBlazeEntity.setAttributes());
+            event.put(ModEntityTypes.STALKER.get(), StalkerEntity.setAttributes());
             event.put(ModEntityTypes.FLYING_HORSE.get(), FlyingHorseEntity.setAttributes());
             event.put(ModEntityTypes.NIGHTMARE_BOSS.get(), NightmareBossEntity.setAttributes());
         }

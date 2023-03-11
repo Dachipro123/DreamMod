@@ -7,6 +7,7 @@ import net.dachi.dream.entity.ModEntityTypes;
 import net.dachi.dream.entity.client.FlyingHorseRenderer;
 import net.dachi.dream.entity.client.NightmareBlazeRenderer;
 import net.dachi.dream.entity.client.NightmareBossRenderer;
+import net.dachi.dream.entity.client.StalkerRenderer;
 import net.dachi.dream.entity.custom.FlyingHorseEntity;
 import net.dachi.dream.fluid.ModFluidTypes;
 import net.dachi.dream.fluid.ModFluids;
@@ -100,6 +101,7 @@ public class Dream
             EntityRenderers.register(ModEntityTypes.NIGHTMARE_BOSS.get(), NightmareBossRenderer::new);
             EntityRenderers.register(ModEntityTypes.NIGHTMARE_BLAZE.get(), NightmareBlazeRenderer::new);
             EntityRenderers.register(ModEntityTypes.FLYING_HORSE.get(), FlyingHorseRenderer::new);
+            EntityRenderers.register(ModEntityTypes.STALKER.get(), StalkerRenderer::new);
 
             MenuScreens.register(ModMenuTypes.DREAM_FORGER_MENU.get(), DreamForgerScreen::new);
 
