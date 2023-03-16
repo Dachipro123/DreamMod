@@ -1,9 +1,13 @@
 package net.dachi.dream.entity.custom;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.protocol.Packet;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerBossEvent;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.BossEvent;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -17,6 +21,7 @@ import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.network.NetworkHooks;
 import software.bernie.geckolib3.core.AnimationState;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
@@ -28,6 +33,8 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 public class NightmareBossEntity extends Monster implements IAnimatable {
     private AnimationFactory factory = new AnimationFactory(this);
+    private final ServerBossEvent bossInfo = new ServerBossEvent(this.getDisplayName(), ServerBossEvent.BossBarColor.PURPLE,
+            ServerBossEvent.BossBarOverlay.PROGRESS);
 
     public NightmareBossEntity(EntityType<? extends Monster> entityType, Level world) {
         super(entityType, world);
@@ -79,6 +86,24 @@ public class NightmareBossEntity extends Monster implements IAnimatable {
                 0, this::attackPredicate));
 
     }
+
+    @Override
+    protected void customServerAiStep() {
+        this.bossInfo.setProgress(this.getHealth() / this.getMaxHealth());
+    }
+
+    @Override
+    public void startSeenByPlayer(ServerPlayer pServerPlayer) {
+        super.startSeenByPlayer(pServerPlayer);
+        this.bossInfo.addPlayer(pServerPlayer);
+    }
+
+    @Override
+    public void stopSeenByPlayer(ServerPlayer pServerPlayer) {
+        super.stopSeenByPlayer(pServerPlayer);
+        this.bossInfo.removePlayer(pServerPlayer);
+    }
+
 
     @Override
     public AnimationFactory getFactory() {

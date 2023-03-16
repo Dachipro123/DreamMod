@@ -31,5 +31,6 @@
   "message.dream.no_water": "There Is No Water Around",
   "itemGroup.dreamtab": "Dream Mod Menu",
   "dream.tooltip.liquid.amount.with.capacity": "%s / %s mB",
-  "dream.tooltip.liquid.amount": "%s mB"
+  "dream.tooltip.liquid.amount": "%s mB",
+  "entity.dream.nightmare_boss": "Nightmare Boss"
 }
